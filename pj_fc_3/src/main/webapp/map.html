@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>지도에 컨트롤 올리기</title>
+<style>
+#address {
+	width: 250px;
+}
+</style>
+</head>
+<body>
+	<div id="map" style="width: 100%; height: 350px;"></div>
+
+	<input type="text" id="address">
+	<button id="search">search</button>
+	<div id="show"></div>
+
+	<script type="text/javascript"
+		src="//apis.daum.net/maps/maps3.js?apikey=4d9735d3facdb6194d2212737085121c&libraries=services"></script>
+	<script>
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new daum.maps.LatLng(37.404337, 127.106141), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		
+		document.getElementById("search").addEventListener("click", address);
+
+
+		var geocoder = new daum.maps.services.Geocoder();
+		console.log(geocoder);
+		//search button click event
+		function address() {
+			var ad = document.getElementById("address").value;
+			
+			geocoder.addr2coord(ad, function(status, result) {
+		
+				// 정상적으로 검색이 완료됐으면 
+				if (status === daum.maps.services.Status.OK) {
+
+					var coords = new daum.maps.LatLng(result.addr[0].lat,
+							result.addr[0].lng);
+
+					// 결과값으로 받은 위치를 마커로 표시합니다
+					var marker = new daum.maps.Marker({
+						map : map,
+						position : coords,
+						draggable : true
+					});
+					map.setCenter(coords);
+
+					//marker를 옮겼을 때 좌표를 받아오기. 
+					daum.maps.event.addListener(marker, 'dragend', function() {
+						
+						var latlng = marker.getPosition();
+					    searchDetailAddrFromCoords(latlng, function(status, result) {
+					        if (status === daum.maps.services.Status.OK) {
+					            var detailAddr = result[0].jibunAddress.name;
+					            
+					            var content = detailAddr;
+					              document.getElementById("show").innerHTML = content;
+					             
+					              document.getElementById("address").value = content;  
+					            // 마커를 클릭한 위치에 표시합니다 
+					            marker.setPosition(latlng);
+					            marker.setMap(map);   
+					        }  
+					    });
+					});
+				}
+			});
+		}
+		function searchDetailAddrFromCoords(coords, callback) {
+		    // 좌표로 법정동 상세 주소 정보를 요청합니다
+		    geocoder.coord2detailaddr(coords, callback);
+		}
+	</script>
+</body>
+</html>

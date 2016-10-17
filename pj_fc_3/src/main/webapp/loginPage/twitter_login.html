@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+	window.twttr = (function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+		if (d.getElementById(id))
+			return t;
+		js = d.createElement(s);
+		js.id = 'UxGPhtiTj4uFKcmQKyE0i6pGs';
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		
+		twttr.widgets.load(document.getElementById("container"));
+		  
+		t._e = [];
+		t.ready = function(f) {
+			t._e.push(f);
+		};
+
+		return t;
+		
+	}(document, "script", "twitter-wjs"));
+</script>
+
+<body>
+	<div id="container"></div>
+</body>
+</html>
