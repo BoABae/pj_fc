@@ -33,6 +33,7 @@ var ApplicationRouter = Backbone.Router.extend({
 		// Render view after it is in the DOM (styles are applied)
 		view.render();
 		this.currentView = view;
+		
 	},
 
 	content_html: function() {

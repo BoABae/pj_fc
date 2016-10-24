@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>pj1</title>
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=4d9735d3facdb6194d2212737085121c&libraries=services"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.js"
@@ -39,10 +39,15 @@
 .btn_back {
 	width: 50px;
 	height: 50px;
+	margin-left: 10px;
+	margin-top: 5px;
+	border-radius: 40px;
 }
 
 body {
 	background-color: #f2f2f2;
+	margin: 0px;
+	padding: 0px;
 }
 
 .content {
@@ -51,13 +56,9 @@ body {
 	border: solid 2px #a6a6a6;
 	margin: 0 auto;
 }
-
-.btn_con {
-	width: 50px;
-	height: 50px;
-	border-radius: 20px;
+.conBtn{
+	
 }
-
 /* tempororily */
 #content {
 	width: 75%;
@@ -70,35 +71,41 @@ body {
 	width: 600px;
 	height: 400px;
 }
+
+
 </style>
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
+	/*
+	 google.charts.load('current', {
+	 'packages' : [ 'corechart' ]
+	 });
+	 google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-				[ 'Year', 'Sales', 'Expenses' ], [ '2004', 1000, 400 ],
-				[ '2005', 1170, 460 ], [ '2006', 660, 1120 ],
-				[ '2007', 1030, 540 ] ]);
+	 function drawChart() {
+	 var data = google.visualization.arrayToDataTable([
+	 [ 'Year', 'Sales'], [ '2004', 1000],
+	 [ '2005', 1170], [ '2006', 660],
+	 [ '2007', 1030] ]);
 
-		var options = {
-			title : 'Company Performance',
-			//curveType: 'function', curved line
-			legend : {
-				position : 'bottom'
-			},
-			width : 400,
-			height : 300
-		};
-		
+	 var options = {
+	 title : 'Company Performance',
+	 //curveType: 'function', curved line
+	 legend : {
+	 position : 'bottom'
+	 },
+	 width : 400,
+	 height : 300
+	 };
+	
 
-		var chart = new google.visualization.LineChart(document
-				.getElementById('curve_chart'));
+	 var chart = new google.visualization.LineChart(document
+	 .getElementById('curve_chart'));
 
-		chart.draw(data, options);
-	}
+	 chart.draw(data, options);
+	 }
+	
+	 */
+
 </script>
 </head>
 <body>
@@ -110,14 +117,14 @@ body {
 	<!-- header부분  -->
 	<script type="text/template" id="header_html">
 <div class="header">
-<button class="btn_back">click</button>
+<button class="btn_back">Back</button>
 
 </div>
 </script>
 
 	<!-- content부분 -->
 	<script type="text/template" id="content_html">
-<button id="colorPicker">
+<button> 
 <a href="#cssEdit_html">
 css
 
@@ -155,7 +162,6 @@ map
 <input type="text" id="address">
 <button id="search">search</button>
 <div id="show"></div>
-
 </script>
 
 	<script type="text/template" id="SNS_html">
@@ -167,8 +173,8 @@ map
 
 </script>
 
-	<script type="text/template" id="googleChart_html">
-<div id="curve_chart">
+<script type="text/template" id="googleChart_html">
+<div id="chart_div">
 
 </div>
 
@@ -176,15 +182,14 @@ map
 
 
 
-	<script src="js/collections/collection.js"></script>
 	<script src="js/models/model.js"></script>
-	<script src="js/views/main_view.js"></script>
+	<script src="js/views/mainView.js"></script>
 	<script src="js/Backbone.View.js"></script>
 	<script src="js/ContentView.js"></script>
 	<script src="js/routers/router.js"></script>
 	<script src="js/views/snsView.js"></script>
+	<script src="js/views/chartView.js"></script>
 
-	<script src="js/views/mapView.js"></script>
 	<script src="js/views/colorPickerView.js"></script>
 	<script type="text/javascript">
 		var r = new ApplicationRouter($('#content'));

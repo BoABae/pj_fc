@@ -28,25 +28,22 @@ var hd = new header();
 var Content = Backbone.View.extend({
 
 	el : $("#content"),
-	events: {
-		"click #colorPicker_html" : 'cp_click'
-	},
-	
+	tagName: 'button',
+	className: 'conBtn',
 	initialize : function() {
 		this.render();
 	},
 	render : function() {
 		var template = _.template($("#content_html").html());
 		this.$el.html(template);
-
+		//why content button not work?
+		$(".conBtn").css({
+			"width": 50,
+			"height": 50
+		});
 	},
 
 });
 
 var con = new Content();
-
-
-
-
-
 
