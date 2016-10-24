@@ -7,6 +7,7 @@ var ApplicationRouter = Backbone.Router.extend({
 		this.cssView = new ContentView({template: '#cssEdit_html'});
 		this.mView = new ContentView({template: '#map_html'});
 		this.snsView = new ContentView({template: '#SNS_html'});
+		this.chartView = new ContentView({template: '#googleChart_html'});
 		
 	},
 
@@ -15,7 +16,8 @@ var ApplicationRouter = Backbone.Router.extend({
 		"content_html": "content_html",
 		"cssEdit_html": "cssEdit_html",
 		"map_html": "map_html",
-		"SNS_html": "SNS_html"
+		"SNS_html": "SNS_html",
+		"googleChart_html": "googleChart_html"
 		
 	},
 
@@ -46,6 +48,9 @@ var ApplicationRouter = Backbone.Router.extend({
 	},
 	SNS_html: function(){
 		this.switchView(this.snsView);
+	},
+	googleChart_html: function(){
+		this.switchView(this.chartView);
 	}
 
 });

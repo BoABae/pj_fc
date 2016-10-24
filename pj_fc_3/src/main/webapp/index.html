@@ -16,6 +16,8 @@
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="js/lib/underscore.js"></script>
 <script src="js/lib/backbone.js"></script>
 <link rel="stylesheet" href="css/slider.css">
@@ -69,7 +71,34 @@ body {
 	height: 400px;
 }
 </style>
+<script type="text/javascript">
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
 
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+				[ 'Year', 'Sales', 'Expenses' ], [ '2004', 1000, 400 ],
+				[ '2005', 1170, 460 ], [ '2006', 660, 1120 ],
+				[ '2007', 1030, 540 ] ]);
+
+		var options = {
+			title : 'Company Performance',
+			//curveType: 'function', curved line
+			legend : {
+				position : 'bottom'
+			},
+			width : 400,
+			height : 300
+		};
+
+		var chart = new google.visualization.LineChart(document
+				.getElementById('curve_chart'));
+
+		chart.draw(data, options);
+	}
+</script>
 </head>
 <body>
 	<div id="header"></div>
@@ -106,15 +135,20 @@ map
 
 </button>
 
+<button>
+<a href="#googleChart_html">chart</a>
+</button>
+
 </script>
 
-<script type="text/template" id="cssEdit_html">
+
+	<script type="text/template" id="cssEdit_html">
 
 
 </script>
 
 
-<script type="text/template" id="map_html">
+	<script type="text/template" id="map_html">
 
 <div id="map"></div>
 <input type="text" id="address">
@@ -123,7 +157,7 @@ map
 
 </script>
 
-<script type="text/template" id="SNS_html">
+	<script type="text/template" id="SNS_html">
 <div>
 <button id="facebook">facebook 연결하기</button>
 <button id="twitter">twitter 연결하기</button>
@@ -131,72 +165,14 @@ map
 </div>
 
 </script>
-<script>
-$(function(){
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	mapOption = {
-		center : new daum.maps.LatLng(37.404337, 127.106141), // 지도의 중심좌표
-		level : 3
-	// 지도의 확대 레벨
-	};
 
-	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
-	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-	var zoomControl = new daum.maps.ZoomControl();
-	map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-	
-	document.getElementById("search").addEventListener("click", address);
+	<script type="text/template" id="googleChart_html">
+<div id="curve_chart">
 
+</div>
 
-	var geocoder = new daum.maps.services.Geocoder();
-	console.log(geocoder);
-	//search button click event
-	function address() {
-		var ad = document.getElementById("address").value;
-		
-		geocoder.addr2coord(ad, function(status, result) {
-	
-			// 정상적으로 검색이 완료됐으면 
-			if (status === daum.maps.services.Status.OK) {
-
-				var coords = new daum.maps.LatLng(result.addr[0].lat,
-						result.addr[0].lng);
-
-				// 결과값으로 받은 위치를 마커로 표시합니다
-				var marker = new daum.maps.Marker({
-					map : map,
-					position : coords,
-					draggable : true
-				});
-				map.setCenter(coords);
-
-				//marker를 옮겼을 때 좌표를 받아오기. 
-				daum.maps.event.addListener(marker, 'dragend', function() {
-					
-					var latlng = marker.getPosition();
-				    searchDetailAddrFromCoords(latlng, function(status, result) {
-				        if (status === daum.maps.services.Status.OK) {
-				            var detailAddr = result[0].jibunAddress.name;
-				            
-				            var content = detailAddr;
-				              document.getElementById("show").innerHTML = content;
-				             
-				              document.getElementById("address").value = content;  
-				            // 마커를 클릭한 위치에 표시합니다 
-				            marker.setPosition(latlng);
-				            marker.setMap(map);   
-				        }  
-				    });
-				});
-			}
-		});
-	}
-	function searchDetailAddrFromCoords(coords, callback) {
-	    // 좌표로 법정동 상세 주소 정보를 요청합니다
-	    geocoder.coord2detailaddr(coords, callback);
-	}});
 </script>
+
 
 
 	<script src="js/collections/collection.js"></script>
@@ -213,13 +189,7 @@ $(function(){
 		var r = new ApplicationRouter($('#content'));
 		Backbone.history.start();
 	</script>
-<script>
 
-
-	
-	
-	
-</script>
 
 </body>
 </html>
