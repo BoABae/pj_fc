@@ -8,7 +8,7 @@ var colorP = Backbone.View.extend({
 	},
 	
 	render : function() {
-		var template = _.template($("#colorPicker_html").html(), {});
+		var template = _.template($("#cssEdit_html").html(), {});
 		this.$el.html(template);
 	}
 

@@ -34,7 +34,7 @@ var Content = Backbone.View.extend({
 		this.render();
 	},
 	render : function() {
-		var template = _.template($("#content_html").html());
+		var template = _.template($("#content_html").html(), {});
 		this.$el.html(template);
 		//why content button not work?
 		$(".conBtn").css({

@@ -6,12 +6,12 @@ var ChartView = Backbone.View.extend({
 	
 	
 	render: function(){
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(this.drawChart);
 		var template = _.template($("#googleChart_html").html(), {});
 		this.$el.html(template);
-		 google.charts.load('current', {
-			 'packages' : [ 'corechart' ]
-			 });
-		google.charts.setOnLoadCallback(this.drawChart);
 		
 	},
 	drawChart: function(){
