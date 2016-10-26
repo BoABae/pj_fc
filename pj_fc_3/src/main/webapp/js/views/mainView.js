@@ -28,19 +28,14 @@ var hd = new header();
 var Content = Backbone.View.extend({
 
 	el : $("#content"),
-	tagName: 'button',
-	className: 'conBtn',
+	
 	initialize : function() {
 		this.render();
 	},
 	render : function() {
-		var template = _.template($("#content_html").html(), {});
+		var template = _.template($("#main_html").html(), {});
 		this.$el.html(template);
-		//why content button not work?
-		$(".conBtn").css({
-			"width": 50,
-			"height": 50
-		});
+	
 	},
 
 });

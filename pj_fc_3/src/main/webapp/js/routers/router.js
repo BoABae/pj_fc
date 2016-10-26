@@ -1,9 +1,12 @@
+
+
+
 var ApplicationRouter = Backbone.Router.extend({
 
 	initialize: function(el) {
 		this.el = el;
 
-		this.conView = new ContentView({template: '#content_html'});
+		this.conView = new ContentView({template: '#main_html'});
 		this.cssView = new ContentView({template: '#cssEdit_html'});
 		this.mView = new ContentView({template: '#map_html'});
 		this.snsView = new ContentView({template: '#SNS_html'});
@@ -12,8 +15,8 @@ var ApplicationRouter = Backbone.Router.extend({
 	},
 
 	routes: {
-		"": "content_html",
-		"content_html": "content_html",
+		"": "main_html",
+		"main_html": "main_html",
 		"cssEdit_html": "cssEdit_html",
 		"map_html": "map_html",
 		"SNS_html": "SNS_html",
@@ -36,7 +39,7 @@ var ApplicationRouter = Backbone.Router.extend({
 		
 	},
 
-	content_html: function() {
+	main_html: function() {
 		this.switchView(this.conView);
 	},
 	

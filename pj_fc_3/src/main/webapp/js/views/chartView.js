@@ -4,14 +4,13 @@ var ChartView = Backbone.View.extend({
 		this.render();
 	},
 	
-	
 	render: function(){
+		var template = _.template($("#googleChart_html").html(), {});
+		this.$el.html(template);
 		google.charts.load('current', {
 			'packages' : [ 'corechart' ]
 		});
 		google.charts.setOnLoadCallback(this.drawChart);
-		var template = _.template($("#googleChart_html").html(), {});
-		this.$el.html(template);
 		
 	},
 	drawChart: function(){

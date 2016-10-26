@@ -56,10 +56,6 @@ body {
 	border: solid 2px #a6a6a6;
 	margin: 0 auto;
 }
-.conBtn{
-	
-}
-/* tempororily */
 #content {
 	width: 75%;
 	height: 400px;
@@ -71,8 +67,6 @@ body {
 	width: 400px;
 	height: 300px;
 }
-
-
 </style>
 <script type="text/javascript">
 	/*
@@ -123,7 +117,7 @@ body {
 </script>
 
 	<!-- content부분 -->
-	<script type="text/template" id="content_html">
+	<script type="text/template" id="main_html">
 <button> 
 <a href="#cssEdit_html">
 css
@@ -150,19 +144,11 @@ map
 </script>
 
 
-	<script type="text/template" id="cssEdit_html">
+<script type="text/template" id="cssEdit_html">
 
 
 </script>
 
-
-	<script type="text/template" id="map_html">
-
-<div id="map"></div>
-<input type="text" id="address">
-<button id="search">search</button>
-<div id="show"></div>
-</script>
 
 	<script type="text/template" id="SNS_html">
 <div>
@@ -180,7 +166,12 @@ map
 
 </script>
 
-
+<script type="text/template" id="map_html">
+<div id="map"></div>
+<input type="text" id="address">
+<button id="search">search</button>
+<div id="show"></div>
+</script>
 
 	<script src="js/models/model.js"></script>
 	<script src="js/Backbone.View.js"></script>
@@ -191,7 +182,7 @@ map
 	<script src="js/views/mapView.js"></script>
 	<script src="js/routers/router.js"></script>
 
-	<script src="js/views/colorPickerView.js"></script>
+	<script src="js/views/colorPickerView.js"></script> 
 	<script type="text/javascript">
 		var r = new ApplicationRouter($('#content'));
 		Backbone.history.start();
