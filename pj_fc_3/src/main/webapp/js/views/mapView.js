@@ -1,31 +1,3 @@
-var mv = Backbone.View.extend({
-	el: $("#content"),
-	initialize: function(){
-		this.render();
-		
-	},
-	render: function(){
-		var template = _.template($("#map_html").html(), {});
-		this.$el.html(template);
-		var map = new daum.maps.Map(document.getElementById('map'),
-				this.mapOptions);
-		var zoomControl = new daum.maps.ZoomControl();
-		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-	},
-	mapOptions : {
-		center : new daum.maps.LatLng(37.404337, 127.106141), // 지도의 중심좌표
-		level : 3
-	},
-	events: {
-		'click #search': 'search'
-	},
-	search: function(){
-		console.log("hi");
-	}
-	
-	
-});
-
 
 var mapView = Backbone.View.extend({
 	
