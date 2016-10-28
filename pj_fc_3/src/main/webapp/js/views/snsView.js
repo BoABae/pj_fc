@@ -84,6 +84,11 @@ var snsView = Backbone.View.extend({
 				  }
 				  else {
 				    FB.login();
+				    FB.ui({
+					    method: 'share',
+					    display: 'popup',
+					    href: 'https://developers.facebook.com/docs/',
+					  }, function(response){});
 				  }
 				});
 	},

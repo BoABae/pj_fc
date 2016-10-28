@@ -5,6 +5,7 @@ var ContentView = Backbone.View.extend({
 	 */
 	initialize: function(options) {
 		this.template = options.template;
+		console.log(this.template);
 	},
 
 	/*
@@ -13,7 +14,7 @@ var ContentView = Backbone.View.extend({
 	render: function() {
 		var content = $(this.template).html();
 		$(this.el).html(content);
-
+		console.log(content);
 		return this;
 	}
 
